@@ -8,11 +8,13 @@ const Product = require("./model/productModel");
 const app = express();
 app.use(express.json());
 
+//Home Page
 app.get("/", (req, res) =>
 {
-  res.send("HEY");
+  res.send("Home");
 })
 
+//Get all products
 app.get("/product", async (req, res) =>
 {
   try
@@ -27,6 +29,7 @@ app.get("/product", async (req, res) =>
 }
 )
 
+//Get a products by ID
 app.get("/product/:id", async (req, res) =>
 {
   try
@@ -41,7 +44,7 @@ app.get("/product/:id", async (req, res) =>
   }
 }
 )
-
+//Update a product by ID
 app.put("/product/:id", async (req, res) =>
 {
   try
@@ -63,6 +66,7 @@ app.put("/product/:id", async (req, res) =>
   }
 })
 
+//Create a new product 
 app.post("/product", async (req, res) =>
 {
   try
@@ -78,7 +82,7 @@ app.post("/product", async (req, res) =>
   }
 })
 
-
+//Delete a product by ID
 app.delete("/product/:id", async (req, res) =>
 {
 
