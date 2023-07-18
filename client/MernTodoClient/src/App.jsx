@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
-import "./App.css";
+import Task from "../components/Task";
 
 function App() {
   const modal = useRef(null);
@@ -17,6 +16,7 @@ function App() {
     quantity: "",
     price: "",
   });
+
   const [updatePayload, setUpdatedPayload] = useState({
     name: "",
     quantity: "",
@@ -50,19 +50,6 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
-      });
-      const data = await response.json();
-      console.log("Form submission successful:", data);
-      fetchUserData();
-    } catch (error) {
-      console.error("Form submission error:", error);
-    }
-  };
-
-  const deleteTodo = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:3000/product/${id}`, {
-        method: "DELETE",
       });
       const data = await response.json();
       console.log("Form submission successful:", data);
@@ -132,29 +119,13 @@ function App() {
           />
         </div>
         <br />
-        <button type="submit">Send</button>
+        <button type="submit">Create ToDo!</button>
       </form>
       <div>
         {users.length > 0 && (
           <ul>
             {users.map((user) => (
-              <li key={String(user._id)}>
-                <h2> {user.name}</h2>
-                <div> {user.quantity}</div>
-                <div> {user.price}</div>
-                <br />
-                <button onClick={() => deleteTodo(String(user._id))}>
-                  Delete
-                </button>
-                <button
-                  onClick={() => {
-                    modal.current.showModal();
-                    setSelectedUser(user);
-                  }}
-                >
-                  Edit
-                </button>
-              </li>
+              <Task key={user.key} user={user} fetchUserData={fetchUserData} />
             ))}
           </ul>
         )}
