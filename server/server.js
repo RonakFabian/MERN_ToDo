@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 3000;
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const Product = require("./model/productModel");
+const Todos = require("./model/todoModel");
 
 const app = express();
 app.use(express.json());
@@ -14,63 +14,63 @@ app.get("/", (req, res) => {
   res.send("Home");
 });
 
-//Get all products
-app.get("/product", async (req, res) => {
+//Get all todo
+app.get("/todo", async (req, res) => {
   try {
-    const products = await Product.find({});
-    res.status(200).json(products);
+    const todos = await Todos.find({});
+    res.status(200).json(todos);
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
   }
 });
 
-//Get a products by ID
-app.get("/product/:id", async (req, res) => {
+//Get a product by ID
+app.get("/todo/:id", async (req, res) => {
   try {
-    const products = await Product.findById(req.params.id);
-    res.status(200).json(products);
+    const todos = await Todos.findById(req.params.id);
+    res.status(200).json(todos);
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
   }
 });
-//Update a product by ID
-app.put("/product/:id", async (req, res) => {
+//Update a todo by ID
+app.put("/todo/:id", async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body);
+    const todo = await Todos.findByIdAndUpdate(req.params.id, req.body);
 
-    if (!product) {
+    if (!todo) {
       return res.status(404).json("Product Not Found");
     }
-    const updatedProduct = await Product.findById(req.params.id);
-    res.status(200).json(updatedProduct);
+    const updatedTodo = await Todos.findById(req.params.id);
+    res.status(200).json(updatedTodo);
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
   }
 });
 
-//Create a new product
-app.post("/product", async (req, res) => {
+//Create a new todo
+app.post("/todo", async (req, res) => {
   try {
-    const product = await Product.create(req.body);
-    res.status(200).json(product);
+    const todo = await Todos.create(req.body);
+    res.status(200).json(todo);
   } catch (error) {
     console.log(error);
     res.status(404).send(error);
   }
 });
 
-//Delete a product by ID
-app.delete("/product/:id", async (req, res) => {
+//Delete a todo by ID
+app.delete("/todo/:id", async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
+    const todo = await Todos.findByIdAndDelete(req.params.id);
 
-    if (!product) {
-      return res.status(404).json("Product Not Found");
+    if (!todo) {
+      return res.status(404).json("Todo Not Found");
     }
-    res.status(200).json(product);
+    res.status(200).json(todo);
   } catch (error) {
     console.log(error);
     res.status(404).json(error);
