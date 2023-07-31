@@ -7,6 +7,7 @@
   align-items: center !important;
   justify-items: center !important;
   margin-bottom: 50px;
+  
 }
 
 .text-center {
@@ -15,6 +16,27 @@
   justify-items: center !important;
 
 
+}
+
+.modal{
+  overflow: hidden !important;
+  position: fixed;
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #000;
+   z-index: 10;
+  padding: 10;
+  background-color: #ffffff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.inputField{
+  color: #54b3fd;
 }
 
 .sticky {
@@ -36,6 +58,7 @@ body,
   margin: 0px;
   padding: 0px;
   background-color: grey;
+  
 
 }
 

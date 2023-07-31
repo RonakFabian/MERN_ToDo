@@ -14,6 +14,8 @@ import TextField from "@mui/material/TextField";
 import { InputAdornment } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import Modal from "@mui/material/Modal";
+
 function App() {
   const [todos, setTodos] = useState([{}]);
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
@@ -49,20 +51,22 @@ function App() {
   return (
     <>
       <Box>
-        <Box
-          sx={{
-            padding: "25px",
-            display: "flex",
-          }}
-        >
+        <Box sx={{ padding: "10px" }}>
           <TextField
             id="outlined-basic"
-            label="Search for a Task..."
+            label="Search for a TODO..."
             variant="outlined"
             fullWidth
-            sx={{ marginRight: "5px" }}
+            color="primary"
+            size="small"
+            sx={{
+              marginRight: "5px",
+              color: "white",
+              fontColor: "white",
+            }}
             onChange={(e) => OnSearchInput(e)}
             InputProps={{
+              style: { color: "white" },
               endAdornment: (
                 <InputAdornment position="start">
                   <SearchIcon />
@@ -70,9 +74,6 @@ function App() {
               ),
             }}
           />
-          <Button sx={{ marginLeft: "10px" }} variant="outlined">
-            <DarkModeIcon />
-          </Button>
         </Box>
 
         <Box className={style.header}>
@@ -84,20 +85,25 @@ function App() {
             color="secondary"
             onClick={() => setShowCreateTaskModal(true)}
           >
-            <AddBoxIcon /> Add Task
+            <AddBoxIcon />
+            &nbsp;Add Task
           </Button>
         </Box>
       </Box>
 
       {showCreateTaskModal && (
-        <CreateTask
-          fetchUserData={fetchUserData}
-          setShowCreateTaskModal={setShowCreateTaskModal}
-        />
+        <Modal open={showCreateTaskModal}>
+          <CreateTask
+            fetchUserData={fetchUserData}
+            setShowCreateTaskModal={setShowCreateTaskModal}
+          />
+        </Modal>
       )}
       <Grid
         style={{
           padding: "20px",
+          maxWidth: "1000px",
+          margin: "auto",
         }}
       >
         <div>{todoList}</div>

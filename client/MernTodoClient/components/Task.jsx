@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import EditTask from "../components/EditTask";
 import style from "../src/style/todo.module.css";
+import Modal from "@mui/material/Modal";
 
 function Task({ todo, fetchUserData }) {
   const [showEditTaskModal, setShowEditTaskModal] = useState(false);
@@ -35,11 +36,13 @@ function Task({ todo, fetchUserData }) {
   return (
     <>
       {showEditTaskModal && (
-        <EditTask
-          fetchUserData={fetchUserData}
-          setShowEditTaskModal={setShowEditTaskModal}
-          todo={todo}
-        />
+        <Modal open={showEditTaskModal}>
+          <EditTask
+            fetchUserData={fetchUserData}
+            setShowEditTaskModal={setShowEditTaskModal}
+            todo={todo}
+          />
+        </Modal>
       )}
 
       <Card
