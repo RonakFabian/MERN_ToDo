@@ -4,18 +4,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
   const [payload, setPayload] = useState({
     title: "",
@@ -51,7 +39,21 @@ function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
 
   return (
     <>
-      <Box sx={style}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          bgcolor: "background.paper",
+          border: "2px solid #000",
+          boxShadow: 24,
+          minWidth: "80vw",
+          minHeight: "500px",
+          zIndex: 10,
+          p: 10,
+        }}
+      >
         <form method="post" onSubmit={(e) => handleSend(e)}>
           <div>
             Task Title:
@@ -73,8 +75,8 @@ function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
           </div>
 
           <br />
-          <button type="submit">Create ToDo!</button>
           <button onClick={() => setShowCreateTaskModal(false)}>Cancel</button>
+          <button type="submit">Create ToDo!</button>
         </form>{" "}
       </Box>
     </>

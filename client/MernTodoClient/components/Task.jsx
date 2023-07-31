@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import EditTask from "../components/EditTask";
+import style from "../src/style/todo.module.css";
 
 function Task({ todo, fetchUserData }) {
   const [showEditTaskModal, setShowEditTaskModal] = useState(false);
@@ -27,6 +28,10 @@ function Task({ todo, fetchUserData }) {
     }
   };
 
+  const toggleTaskCompleted = (e) => {
+    console.log(e.target.checked);
+  };
+
   return (
     <>
       {showEditTaskModal && (
@@ -36,29 +41,46 @@ function Task({ todo, fetchUserData }) {
           todo={todo}
         />
       )}
-      <li key={String(todo._id)}>
-        <Card sx={{ minWidth: 275, flexGrow: 1 }}>
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              {todo.index}
-            </Typography>
-            <Typography variant="h3" component="div">
-              {todo.title}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Description:
-            </Typography>
-            <Typography variant="h5">{todo.description}</Typography>
-            <Checkbox defaultChecked />
-            <button onClick={() => deleteTodo(String(todo._id))}>Delete</button>
-            <button onClick={() => setShowEditTaskModal(true)}>Edit</button>
-          </CardContent>
-        </Card>
-      </li>
+
+      <Card
+        sx={{
+          marginBottom: "50px",
+          borderRadius: "10px",
+        }}
+      >
+        <Box
+          className={style.ag}
+          sx={{
+            textAlign: "center",
+            typography: "subtitle2",
+            fontFamily: "Monospace",
+            fontWeight: "bold",
+            fontSize: "2rem",
+            textTransform: "capitalize",
+          }}
+        >
+          {todo.title}
+        </Box>
+        <Box
+          sx={{
+            textAlign: "center",
+            padding: "10px",
+          }}
+        >
+          {todo.description}
+        </Box>
+        <Box
+          sx={{
+            textAlign: "center",
+            typography: "subtitle2",
+            fontFamily: "Monospace",
+          }}
+        >
+          <button onClick={() => deleteTodo(String(todo._id))}>Delete</button>
+          <button onClick={() => setShowEditTaskModal(true)}>Edit</button>
+          <Checkbox defaultChecked onChange={(e) => toggleTaskCompleted(e)} />
+        </Box>
+      </Card>
     </>
   );
 }
