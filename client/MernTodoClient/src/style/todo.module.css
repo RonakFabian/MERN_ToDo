@@ -1,12 +1,13 @@
 .header {
   height: 200px;
   width: 100%;
-  background-color: #000000;
+  background: radial-gradient(circle at 50% 50%, rgb(45,45,45) 0%, rgb(0, 0, 0) 100%);
   padding-top: 50px;
   text-align: center !important;
   align-items: center !important;
   justify-items: center !important;
   margin-bottom: 50px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   
 }
 
@@ -19,22 +20,19 @@
 }
 
 .modal{
-  overflow: hidden !important;
-  position: fixed;
-  display: flex;
-  width: 90vw;
-  height: 90vh;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 2px solid #000;
-   z-index: 10;
-  padding: 10;
-  background-color: #ffffff;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+  width: 400px;
+  border: 1px solid #ffffff89;
+  border-radius: 10px;
+  padding: 40px;
+  background: radial-gradient(circle at 50% 50%, rgb(10,10,10) 0%, rgb(0, 0, 0) 95.2%);
 }
+
+
+
 .inputField{
   color: #54b3fd;
 }
@@ -57,8 +55,8 @@ body,
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background-color: grey;
-  
+  background: rgb(33,33,33);
+  background: radial-gradient(circle, rgba(33,33,33,1) 0%, rgba(0,0,0,1) 100%);  
 
 }
 
@@ -87,6 +85,12 @@ body,
   color: transparent;
 }
 
+.aa{
+  background-image: linear-gradient( -100deg, #54b3fd 31%, #904eff 51%, #ef39fe 73% );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .card {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -97,7 +101,10 @@ body,
 
 
 }
+.taskCard{
+  background: rgb(42, 42, 42) !important;
 
+}
 
 .number {
   position: relative;

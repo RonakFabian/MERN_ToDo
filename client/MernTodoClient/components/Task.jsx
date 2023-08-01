@@ -29,10 +29,6 @@ function Task({ todo, fetchUserData }) {
     }
   };
 
-  const toggleTaskCompleted = (e) => {
-    console.log(e.target.checked);
-  };
-
   return (
     <>
       {showEditTaskModal && (
@@ -46,9 +42,11 @@ function Task({ todo, fetchUserData }) {
       )}
 
       <Card
+        className={style.taskCard}
         sx={{
           marginBottom: "50px",
           borderRadius: "10px",
+          padding: "15px",
         }}
       >
         <Box
@@ -66,7 +64,9 @@ function Task({ todo, fetchUserData }) {
         </Box>
         <Box
           sx={{
+            typography: "subtitle2",
             textAlign: "center",
+            fontFamily: "Monospace",
             padding: "10px",
           }}
         >
@@ -79,9 +79,21 @@ function Task({ todo, fetchUserData }) {
             fontFamily: "Monospace",
           }}
         >
-          <button onClick={() => deleteTodo(String(todo._id))}>Delete</button>
-          <button onClick={() => setShowEditTaskModal(true)}>Edit</button>
-          <Checkbox defaultChecked onChange={(e) => toggleTaskCompleted(e)} />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => deleteTodo(String(todo._id))}
+          >
+            Delete
+          </Button>
+          &nbsp;
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setShowEditTaskModal(true)}
+          >
+            Edit
+          </Button>
         </Box>
       </Card>
     </>

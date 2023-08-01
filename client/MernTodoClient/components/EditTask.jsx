@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import style from "../src/style/todo.module.css";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "1px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 function EditTask({ fetchUserData, setShowEditTaskModal, todo }) {
   const [updatePayload, setUpdatedPayload] = useState({
@@ -56,31 +45,51 @@ function EditTask({ fetchUserData, setShowEditTaskModal, todo }) {
   };
   return (
     <>
-      <Box sx={style}>
+      <Box className={style.modal}>
+        <Typography variant="h2" textAlign={"center"} className={style.aa}>
+          Edit TODO:
+        </Typography>
+        <br />
         <form method="put" onSubmit={(e) => handleUpdateSend(e)}>
-          <div>
-            Task Title:
-            <input
+          <Box>
+            <TextField
               type="text"
               name="title"
               defaultValue={todo.title}
+              required
               onChange={handleUpdateChangeInput}
+              label="TODO Title"
+              color="secondary"
+              fullWidth
             />
-          </div>
-          <div>
-            Task Description:
-            <input
+          </Box>
+          <br />
+          <Box>
+            <TextField
               type="text"
               name="description"
               defaultValue={todo.description}
-              onChange={handleUpdateChangeInput}
+              required
+              label="TODO Description"
+              color="secondary"
+              fullWidth
             />
-          </div>
+          </Box>
           <br />
-          <button type="button" onClick={() => setShowEditTaskModal(false)}>
-            Cancel
-          </button>
-          <button type="submit">Edit</button>
+          <Box textAlign={"center"}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={() => setShowEditTaskModal(false)}
+            >
+              Cancel
+            </Button>
+            &nbsp; &nbsp;
+            <Button variant="contained" color="secondary" type="submit">
+              Edit
+            </Button>
+          </Box>
         </form>
       </Box>
     </>

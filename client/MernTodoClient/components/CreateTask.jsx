@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import style from "../src/style/todo.module.css";
+import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
   const [payload, setPayload] = useState({
@@ -43,29 +43,51 @@ function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
       {/* <Box className={style.modalBackground}></Box> */}
 
       <Box className={style.modal}>
+        <Typography variant="h2" textAlign={"center"} className={style.aa}>
+          Create TODO:
+        </Typography>
+        <br />
         <form method="post" onSubmit={(e) => handleSend(e)}>
-          <div>
-            Task Title:
-            <input
+          <Box>
+            <TextField
               type="text"
               name="title"
               value={payload.title}
+              required
               onChange={handleInputChange}
+              label="TODO Title"
+              color="secondary"
+              fullWidth
             />
-          </div>
-          <div>
-            Task Description:
-            <input
+          </Box>
+          <br />
+
+          <Box>
+            <TextField
               type="text"
               name="description"
               value={payload.description}
+              required
               onChange={handleInputChange}
+              label="TODO Description"
+              color="secondary"
+              fullWidth
             />
-          </div>
-
+          </Box>
           <br />
-          <button onClick={() => setShowCreateTaskModal(false)}>Cancel</button>
-          <button type="submit">Create ToDo!</button>
+          <Box textAlign={"center"}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setShowCreateTaskModal(false)}
+            >
+              Cancel
+            </Button>
+            &nbsp; &nbsp;
+            <Button variant="contained" color="secondary" type="submit">
+              Create TODO!
+            </Button>
+          </Box>
         </form>
       </Box>
     </>

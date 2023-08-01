@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import Task from "../components/Task";
 import CreateTask from "../components/CreateTask";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
@@ -12,8 +10,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import TextField from "@mui/material/TextField";
 import { InputAdornment } from "@mui/material";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import Modal from "@mui/material/Modal";
 
 function App() {
@@ -51,30 +47,7 @@ function App() {
   return (
     <>
       <Box>
-        <Box sx={{ padding: "10px" }}>
-          <TextField
-            id="outlined-basic"
-            label="Search for a TODO..."
-            variant="outlined"
-            fullWidth
-            color="primary"
-            size="small"
-            sx={{
-              marginRight: "5px",
-              color: "white",
-              fontColor: "white",
-            }}
-            onChange={(e) => OnSearchInput(e)}
-            InputProps={{
-              style: { color: "white" },
-              endAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
+        {SearchBar(OnSearchInput)}
 
         <Box className={style.header}>
           <Typography variant="h2" component="div" className={style.ag}>
@@ -113,3 +86,32 @@ function App() {
 }
 
 export default App;
+
+function SearchBar(OnSearchInput) {
+  return (
+    <Box sx={{ padding: "10px" }}>
+      <TextField
+        id="outlined-basic"
+        label="Search for a TODO..."
+        variant="outlined"
+        fullWidth
+        color="secondary"
+        size="small"
+        sx={{
+          marginRight: "5px",
+          color: "white",
+          fontColor: "white",
+        }}
+        onChange={(e) => OnSearchInput(e)}
+        InputProps={{
+          style: { color: "white", labelColor: "white" },
+          endAdornment: (
+            <InputAdornment position="start" color="secondary">
+              <SearchIcon color="secondary" />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Box>
+  );
+}
