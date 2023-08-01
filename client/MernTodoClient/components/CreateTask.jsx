@@ -85,7 +85,7 @@ function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
             </Button>
             &nbsp; &nbsp;
             <Button variant="contained" color="secondary" type="submit">
-              Create TODO!
+              Add
             </Button>
           </Box>
         </form>
