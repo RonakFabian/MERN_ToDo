@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   const fetchUserData = () => {
-    fetch("http://localhost:3000/todo", { method: "GET" })
+    fetch("https://mern-todo-a9sn.onrender.com/todo", { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
         setTodos(data);

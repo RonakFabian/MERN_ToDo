@@ -23,13 +23,16 @@ function EditTask({ fetchUserData, setShowEditTaskModal, todo }) {
     console.log(e);
 
     try {
-      const response = await fetch(`http://localhost:3000/todo/${todoID}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatePayload),
-      });
+      const response = await fetch(
+        `https://mern-todo-a9sn.onrender.com/todo/${todoID}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatePayload),
+        }
+      );
       const data = await response.json();
       console.log("Form submission successful:", data);
       fetchUserData();

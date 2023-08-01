@@ -18,7 +18,7 @@ function CreateTask({ fetchUserData, setShowCreateTaskModal }) {
     setShowCreateTaskModal(false);
 
     try {
-      const response = await fetch("http://localhost:3000/todo", {
+      const response = await fetch("https://mern-todo-a9sn.onrender.com/todo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
